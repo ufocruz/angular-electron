@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card" style="width: 18rem;">
+    <img class="logo" src="assets/logo-cmexx.png"  class="card-img-top"/>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Usuário</label>
+          <input class="form-control" formControlName="usuario" id="usuario" required>
+          <div class="form-text" *ngIf="submitted && f.usuario.errors?.required">
+            É necessário digitar o usuário.</div>
+        </div>
+        <div class="mb-3">
+          <label for="senha" class="form-label">Senha</label>
+          <input formControlName="senha" type="password" class="form-control" id="senha" required>
+          <div class="form-text" *ngIf="submitted && f.senha.errors?.required">
+            É necessário digitar o usuário.</div>
+        </div>
+
+        <button [disabled]="loading" type="submit" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

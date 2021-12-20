@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <img src="assets/logo-cmexx.png" alt="" class="img-fluid">
+    </div>
+
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown dropstart">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{currentUser?.user}}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+          <li><a class="dropdown-item" href="#" (click)="logout()">Sair</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row" *ngIf="loading">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  </div>
+  <form [formGroup]="printersForm" *ngIf="!loading" >
+    <div class="row">
+      <div class="col-md-6">
+        <label for="impressora-etiqueta" class="form-label">Impressora de Etiqueta</label>
+
+        <select formControlName="impressoraEtiqueta" id="impressora-etiqueta" class="form-select" aria-label="Default select example" (change)="onChange($event, 'etiqueta')">
+          <option selected value="">Selecione uma impressora para etiqueta</option>
+          <option *ngFor="let print of printers" [value]="print.name">{{print.displayName}}</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label for="impressora-a4" class="form-label">Impressora A4</label>
+
+        <select formControlName="impressoraA4" id="impressora-a4" class="form-select" aria-label="Default select example" (change)="onChange($event, 'a4')">
+          <option selected value="">Selecione uma impressora</option>
+          <option *ngFor="let print of printers" [value]="print.name">{{print.displayName}}</option>
+        </select>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
